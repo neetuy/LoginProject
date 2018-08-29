@@ -1,0 +1,28 @@
+{
+  "name": "ProjectLogin",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
+    "react-native-fbsdk": "^0.7.0",
+    "react-native-firebase": "^4.3.8",
+    "react-native-google-signin": "^0.10.0",
+    "react-native-router-flux": "^4.0.1",
+    "react-native-twitter-signin": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.2",
+    "babel-preset-react-native": "5.0.2",
+    "jest": "23.5.0",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
