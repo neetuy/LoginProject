@@ -5,6 +5,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.react.ReactApplication;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import com.goldenowl.twittersignin.TwitterSigninPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -32,11 +33,12 @@ private static CallbackManager mCallbackManager = CallbackManager.Factory.create
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+            new MainReactPackage(),
             new RNFirebasePackage(),
             new TwitterSigninPackage(),
-          new RNGoogleSigninPackage(),
-          new FBSDKPackage(mCallbackManager)
+            new RNGoogleSigninPackage(),
+            new RNFirebaseAuthPackage(),
+            new FBSDKPackage(mCallbackManager)
 
       );
     }
