@@ -1,12 +1,16 @@
-const initialState = {fieldValue:''}
-import action from './action.js'
+// const initialState = {value:''}
 
-export default function reducer(state=initialState, action){
-    if(action.type=="NAME"){
-        return action.fieldValue
+export default function reducer(state=0, action){
+    switch(action.type){
+        case "INCREASE":
+        return {
+            value:action.value
+          };
+        case 'DECREASE':
+        return{
+            value:action.value
+        };
+          default:
+          return state;
     }
-    else if(action.type=="ADDRESS"){
-        return action.fieldValue
-    }
-    return state
 }

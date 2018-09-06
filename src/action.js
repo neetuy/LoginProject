@@ -1,16 +1,16 @@
 
 
-export function nameFun(name){
+export function increase(value){
    return{
-       type:"NAME",
-       fieldValue:name
+       type:"INCREASE",
+       value
    }  
 }
 
-export function addressFun(address){
+export function decrease(value){
     return{
-        type:"Address",
-        fieldValue:address
+        type:"DECREASE",
+        value
     }
 
 }
