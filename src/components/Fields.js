@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {TextInput,View,Text,TouchableOpacity,Button} from 'react-native'
+import {TextInput,View,Text,TouchableOpacity,Button,AsyncStorage} from 'react-native'
 import { connect } from 'react-redux';
 import {increase, decrease} from  '../action.js'
 
@@ -11,7 +11,8 @@ import {increase, decrease} from  '../action.js'
     constructor(props){
         super(props)
         this.state = {
-            value:0
+            value:0,
+            isStoreLoading: false,
         }
     }
 
@@ -19,6 +20,7 @@ import {increase, decrease} from  '../action.js'
         console.log("increse")
         this.setState({value:this.state.value+1}, ()=>{
         this.props.increaseValue(this.state.value)
+        AsyncStorage.setItem("value",this.props.value)
         })
         console.log("value increased to"+this.state.value)
     }
@@ -27,8 +29,11 @@ import {increase, decrease} from  '../action.js'
         console.log("decrease")
         this.setState({value:this.state.value-1},()=>{
             this.props.decreaseValue(this.state.value)
+            AsyncStorage.setItem("value",this.props.value)
         })
     }
+
+     
     render(){
         return(
         <View style={{justifyContent:'center',alignContent:'center',margin:100}}>

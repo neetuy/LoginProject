@@ -1,5 +1,10 @@
-// const initialState = {value:''}
-
+const initialState = {
+    data: [],
+    dataFetched: false,
+    isFetching: false,
+    error: false
+  }
+  
 export default function reducer(state=0, action){
     switch(action.type){
         case "INCREASE":
