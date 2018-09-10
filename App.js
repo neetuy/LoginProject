@@ -11,15 +11,9 @@
 import React, {Component} from 'react'
 import {AsyncStorage,AppState,Text} from 'react-native'
 import { Provider } from 'react-redux'
-import {createStore } from 'redux';
+import {createStore} from 'redux';
 import reducer from './src/reducer'
 import RouterPage from './src/utils/routes';
-
-// const mylogger = (store) => (next) =>(action)=>{
-// console.log("logger "+action)
-// next(action)
-// }
-
 
 
 var store = createStore(reducer)
