@@ -1,21 +1,19 @@
-const initialState = {
-    data: [],
-    dataFetched: false,
-    isFetching: false,
-    error: false
-  }
-  
-export default function reducer(state=0, action){
+var inititalStore = {
+    name:'',
+    age:''
+}
+
+export default function reducer(state = inititalStore, action){
     switch(action.type){
         case "INCREASE":
         return {
-            value:action.value
+            name:action.name,
+            age:action.age
           };
-        case 'DECREASE':
-        return{
-            value:action.value
-        };
           default:
-          return state;
-    }
+          return {
+              name:state.name,
+              age:state.age
+    };
+}
 }

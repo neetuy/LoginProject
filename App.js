@@ -9,12 +9,16 @@
 
 
 import React, {Component} from 'react'
-
+import {AsyncStorage,AppState,Text} from 'react-native'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux';
+import {createStore } from 'redux';
 import reducer from './src/reducer'
 import RouterPage from './src/utils/routes';
 
+// const mylogger = (store) => (next) =>(action)=>{
+// console.log("logger "+action)
+// next(action)
+// }
 
 
 
@@ -29,32 +33,38 @@ export default class App extends Component{
     }
   }
 
-  componentWillMount() {
-    var self = this;
-    AsyncStorage.getItem('value').then((value)=>{
-      if(value && value.length){
-        let initialStore = JSON.parse(value)
-        self.setState({store: createStore(reducers, initialStore)});
+   componentWillMount() {
+    this.setState({isStoreLoading: true});
+     AsyncStorage.multiGet(['name','age']).then((res)=>{
+      if(res){
+        let initialStore = {
+          name:res[0][1],
+          age:res[1][1]
+        }
+        this.setState({store: createStore(reducer, initialStore)});
       }else{
-        self.setState({store: store});
+        this.setState({store: createStore(reducer, initialStore)});
       }
-      self.setState({isStoreLoading: false});
+      this.setState({isStoreLoading: false});
     }).catch((error)=>{
-      self.setState({store: store});
-      self.setState({isStoreLoading: false});
+      this.setState({store: store});
+      this.setState({isStoreLoading: false});
     })
   }
   
+
+
   render(){
-    if(this.state.isStoreLoading){
-      return <Text>Loading Store ...</Text>
-    }else{
-      return (
-        <Provider store={store}>
-          <AppNavigator />
-        </Provider>
-      )
-    }
+    console.log("store value "+JSON.stringify(this.state.store.getState()))
+        if(this.state.isStoreLoading){
+          return <Text>Loading Store ...</Text>
+        }else{
+          return (
+            <Provider store={this.state.store}>
+              <RouterPage />
+            </Provider>
+          )
+        }
   }
 
 }

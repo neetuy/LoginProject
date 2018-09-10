@@ -1,16 +1,11 @@
 
 
-export function increase(value){
+export function inputField(name,age){
    return{
        type:"INCREASE",
-       value
+       name:name,
+       age:age
+
    }  
 }
 
-export function decrease(value){
-    return{
-        type:"DECREASE",
-        value
-    }
-
-}

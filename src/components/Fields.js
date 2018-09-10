@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {TextInput,View,Text,TouchableOpacity,Button,AsyncStorage} from 'react-native'
 import { connect } from 'react-redux';
-import {increase, decrease} from  '../action.js'
+import {inputField} from  '../action.js'
 
  class Fields extends Component {
     static navigationOptions = {
@@ -11,49 +11,46 @@ import {increase, decrease} from  '../action.js'
     constructor(props){
         super(props)
         this.state = {
-            value:0,
+            name:this.props.name,
+            age:this.props.age,
             isStoreLoading: false,
         }
     }
 
-    increaseNum(){
+    inputField(){
         console.log("increse")
         this.setState({value:this.state.value+1}, ()=>{
-        this.props.increaseValue(this.state.value)
-        AsyncStorage.setItem("value",this.props.value)
+            AsyncStorage.setItem('name',this.state.name)
+            AsyncStorage.setItem('age',this.state.age)
+            this.props.inputField(this.state.name,this.state.age)
         })
-        console.log("value increased to"+this.state.value)
+        console.log("value increased to"+this.props.name)
+        console.log("value increased to"+this.props.age)
+
     }
 
-    decreaseNum(){
-        console.log("decrease")
-        this.setState({value:this.state.value-1},()=>{
-            this.props.decreaseValue(this.state.value)
-            AsyncStorage.setItem("value",this.props.value)
-        })
-    }
 
      
     render(){
         return(
         <View style={{justifyContent:'center',alignContent:'center',margin:100}}>
-            <TouchableOpacity
-                onPress={this.increaseNum.bind(this)}
-            >
-            <Text>increase</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={this.decreaseNum.bind(this)}
-            >
-            <Text>decrease</Text>
-            </TouchableOpacity>
-            <Text>{this.state.value}</Text>
-            <Text>{this.props.value}</Text>
-            {/* <Button
-                onPress={()=>this.props.navigation.navigate('Profile')}
+            <TextInput
+                onChangeText={(text)=>this.setState({name:text})}
+                placeholder='name'
+                value={this.state.name}
+            />
+            <TextInput
+                onChangeText={(text)=>this.setState({age:text})}
+                placeholder='age'
+                value={this.state.age}
+            />
+            <Text>{this.state.name.name}</Text>
+            <Text>{this.state.age.age}</Text>
+            <Button
+                onPress={()=>this.inputField()}
                 title="Next"
                 color="#841584"
-            /> */}
+            />
         </View>
         )
     }
@@ -61,14 +58,15 @@ import {increase, decrease} from  '../action.js'
 
 function mapStateToProps(state){
     return{
-        value:state.value
+        name:state.name,
+        age:state.age,
+
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        increaseValue: (value)=>dispatch(increase(value)),
-        decreaseValue: (value)=>dispatch(decrease(value)),
+        inputField: (name,age)=>dispatch(inputField(name,age)),
     }
 } 
 
