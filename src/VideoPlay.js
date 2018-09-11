@@ -1,31 +1,46 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,StyleSheet } from 'react-native';
 import Video from 'react-native-video';
 
 export default class VideoPLay extends Component {
+    constructor(){
+        super()
+        this.state = {
+            playing:true
+        }
+    }   
+    onLoad(params) {
+        console.log("onload "+JSON.stringify(params))
+
+        // this.setState({ songDuration: params.duration });
+      }
+    
+    //called in onProgress to set time.
+    
+    setTime(params) {
+        console.log("onprogress "+JSON.stringify(params))
+        // if (!this.state.sliding) {
+        //   this.setState({ currentTime: params.currentTime });
+        // }
+    }
     render(){
         return(
-            <View>
-                <Video source={{uri: "background"}}   // Can be a URL or a local file.
-                    ref={(ref) => {
-                        this.player = ref
-                    }}                                      // Store reference
-                    onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                    onEnd={this.onEnd}                      // Callback when playback finishes
-                    onError={this.videoError}               // Callback when video cannot be loaded
-                    style={styles.backgroundVideo} />
-            </View>
+               <Video
+                    source={{uri: 'https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'}}
+                    style={styles.backgroundVideo}
+                    paused={!this.state.playing}
+                    onLoad={this.onLoad.bind(this)}                                                   
+                    onProgress={this.setTime.bind(this)}
+                />
         )
     }
 }
-
 var styles = StyleSheet.create({
-backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-},
-
-});
+    backgroundVideo: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+    },
+  });
