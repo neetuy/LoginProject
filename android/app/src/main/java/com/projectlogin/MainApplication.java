@@ -4,6 +4,7 @@ import android.app.Application;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.goldenowl.twittersignin.TwitterSigninPackage;
@@ -33,6 +34,7 @@ private static CallbackManager mCallbackManager = CallbackManager.Factory.create
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
           new ReactVideoPackage(),
           new RNFirebasePackage(),
           new TwitterSigninPackage(),

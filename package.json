@@ -16,6 +16,7 @@
     "react-native-google-signin": "^0.10.0",
     "react-native-router-flux": "^4.0.1",
     "react-native-twitter-signin": "^1.1.1",
+    "react-native-vector-icons": "^5.0.0",
     "react-native-video": "^3.2.0"
   },
   "devDependencies": {
