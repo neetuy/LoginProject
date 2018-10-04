@@ -25,13 +25,24 @@ export default class VideoPLay extends Component {
     setTime(params) {
         console.log("onprogress "+JSON.stringify(params))
         console.log("progressTime "+this.state.progressTime)
-        var progressTime =this.state.currentTime*100/this.state.seekableDuration
+        var progressTime =this.state.currentTime/this.state.seekableDuration
         this.setState({
             seekableDuration:params.seekableDuration,
             playableDuration:params.playableDuration,
             currentTime:params.currentTime,
             progressTime:progressTime
         },
+        // setTimeout(() => {
+        //     let progress = 0;
+        //     this.setState({ indeterminate: false });
+        //     setInterval(() => {
+        //       progress += Math.random() / 5;
+        //       if (progress > 1) {
+        //         progress = 1;
+        //       }
+        //       this.setState({ progress });
+        //     }, 500);
+        //   }, 1500)
     )
     }
     videoPlay(play){
@@ -39,6 +50,7 @@ export default class VideoPLay extends Component {
         this.setState({playing:!play})
     }
     render(){
+        console.log("progress time "+this.state.progressTime)
         return(
             <View style={{flex:1}}>
                 <View style={{flex:1, justifyContent:"center"}}>
@@ -65,6 +77,7 @@ export default class VideoPLay extends Component {
                 styleAttr = "Horizontal" 
                 progress={this.state.progressTime}
                 animating ={true}
+                style={{margin:20}}
                 indeterminate = { false } 
                 /> 
 

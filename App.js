@@ -1,19 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React, {Component} from 'react';
-import VideoPLay from './src/VideoPlay'
-export default class App extends Component{
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import Book from './src/screens/Book'
 
+
+export default class App extends Component {
+  
   render() {
     return (
-      <VideoPLay />
+      <Book/>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
